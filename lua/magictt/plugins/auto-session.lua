@@ -3,9 +3,12 @@ return {
   config = function()
     local auto_session = require("auto-session")
 
+    -- Set sessionoptions before auto-session setup
+    vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
     auto_session.setup({
-      auto_restore_enabled = false,
-      auto_session_suppress_dirs = { "~/", "~/Dev/" },
+      auto_restore = false,
+      suppressed_dirs = { "~/", "~/Dev/" },
     })
 
     local keymap = vim.keymap

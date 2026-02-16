@@ -19,4 +19,7 @@ require("lazy").setup({ { import = "magictt.plugins" }, { import = "magictt.plug
   change_detection = {
     notify = false,
   },
+  rocks = {
+    enabled = false,
+  },
 })
