@@ -42,3 +42,15 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+-- LSP diagnostics - enable inline error messages
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "●", -- customize the prefix for virtual text
+    spacing = 4,
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})

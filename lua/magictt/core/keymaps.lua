@@ -5,7 +5,8 @@ local keymap = vim.keymap -- for conciseness
 
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc= "Open explorer" })
-keymap.set("n", "<leader>mm", vim.cmd.Mason, { desc= "Open explorer" })
+keymap.set("n", "<leader>mm", vim.cmd.Mason, { desc= "Open Mason panel" })
+keymap.set("n", "<leader>ln", vim.cmd.Lazy, { desc= "Open Lazy panel" })
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
