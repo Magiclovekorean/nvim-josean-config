@@ -152,6 +152,215 @@ return {
             },
           })
         end,
+        ["astro"] = function()
+          -- configure astro server
+          lspconfig["astro"].setup({
+            capabilities = capabilities,
+            init_options = {
+              typescript = {
+                tsdk = "node_modules/typescript/lib",
+              },
+            },
+          })
+        end,
+        ["cssls"] = function()
+          -- configure css server
+          lspconfig["cssls"].setup({
+            capabilities = capabilities,
+            settings = {
+              css = {
+                validate = true,
+                lint = {
+                  unknownAtRules = "ignore",
+                },
+              },
+              scss = {
+                validate = true,
+                lint = {
+                  unknownAtRules = "ignore",
+                },
+              },
+              less = {
+                validate = true,
+                lint = {
+                  unknownAtRules = "ignore",
+                },
+              },
+            },
+          })
+        end,
+        ["html"] = function()
+          -- configure html server
+          lspconfig["html"].setup({
+            capabilities = capabilities,
+            filetypes = { "html", "templ", "astro" },
+            settings = {
+              html = {
+                format = {
+                  indentInnerHtml = true,
+                  wrapLineLength = 120,
+                  wrapAttributes = "auto",
+                },
+              },
+            },
+          })
+        end,
+        ["prismals"] = function()
+          -- configure prisma server
+          lspconfig["prismals"].setup({
+            capabilities = capabilities,
+            settings = {
+              prisma = {
+                prismaFmtBinPath = "",
+              },
+            },
+          })
+        end,
+        ["pyright"] = function()
+          -- configure python server
+          lspconfig["pyright"].setup({
+            capabilities = capabilities,
+            settings = {
+              python = {
+                analysis = {
+                  typeCheckingMode = "basic",
+                  autoSearchPaths = true,
+                  useLibraryCodeForTypes = true,
+                  diagnosticMode = "workspace",
+                  autoImportCompletions = true,
+                  extraPaths = {},
+                  stubPath = "typings",
+                },
+              },
+            },
+          })
+        end,
+        ["tailwindcss"] = function()
+          -- configure tailwindcss server
+          lspconfig["tailwindcss"].setup({
+            capabilities = capabilities,
+            filetypes = {
+              "html",
+              "javascript",
+              "javascriptreact",
+              "typescript",
+              "typescriptreact",
+              "svelte",
+              "vue",
+              "astro",
+              "css",
+              "scss",
+              "less",
+            },
+            settings = {
+              tailwindCSS = {
+                classAttributes = { "class", "className", "classList", "ngClass" },
+                includeLanguages = {
+                  typescript = "javascript",
+                  typescriptreact = "javascript",
+                  javascriptreact = "javascript",
+                  svelte = "html",
+                  astro = "html",
+                },
+                lint = {
+                  cssConflict = "warning",
+                  invalidApply = "error",
+                  invalidConfigPath = "error",
+                  invalidScreen = "error",
+                  invalidTailwindDirective = "error",
+                  invalidVariant = "error",
+                  recommendedVariantOrder = "warning",
+                },
+                validate = true,
+                experimental = {
+                  classRegex = {
+                    "tw`([^`]*)",
+                    "tw\\.[^`]+`([^`]*)`",
+                    "tw\\(.*?\\)`([^`]*)",
+                    "cn`([^`]*)",
+                    "classNames\\(([^)]*)\\)",
+                    "clsx`([^`]*)",
+                  },
+                },
+              },
+            },
+          })
+        end,
+        ["ts_ls"] = function()
+          -- configure typescript server
+          lspconfig["ts_ls"].setup({
+            capabilities = capabilities,
+            filetypes = {
+              "javascript",
+              "javascriptreact",
+              "javascript.jsx",
+              "typescript",
+              "typescriptreact",
+              "typescript.tsx",
+            },
+            settings = {
+              typescript = {
+                inlayHints = {
+                  includeInlayParameterNameHints = "all",
+                  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                  includeInlayFunctionParameterTypeHints = true,
+                  includeInlayVariableTypeHints = true,
+                  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                  includeInlayPropertyDeclarationTypeHints = true,
+                  includeInlayFunctionLikeReturnTypeHints = true,
+                  includeInlayEnumMemberValueHints = true,
+                },
+                suggest = {
+                  completeFunctionCalls = true,
+                  includeCompletionsForModuleExports = true,
+                  includeCompletionsWithSnippetText = true,
+                  autoImports = true,
+                },
+                preferences = {
+                  includePackageJsonAutoImports = "auto",
+                  jsxAttributeCompletionStyle = "auto",
+                },
+                format = {
+                  indentSize = 2,
+                  convertTabsToSpaces = true,
+                },
+              },
+              javascript = {
+                inlayHints = {
+                  includeInlayParameterNameHints = "all",
+                  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                  includeInlayFunctionParameterTypeHints = true,
+                  includeInlayVariableTypeHints = true,
+                  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                  includeInlayPropertyDeclarationTypeHints = true,
+                  includeInlayFunctionLikeReturnTypeHints = true,
+                  includeInlayEnumMemberValueHints = true,
+                },
+                suggest = {
+                  completeFunctionCalls = true,
+                  includeCompletionsForModuleExports = true,
+                  includeCompletionsWithSnippetText = true,
+                  autoImports = true,
+                },
+                preferences = {
+                  includePackageJsonAutoImports = "auto",
+                  jsxAttributeCompletionStyle = "auto",
+                },
+              },
+            },
+            commands = {
+              TypeScriptOrganizeImports = {
+                function()
+                  vim.lsp.buf.execute_command({
+                    command = "_typescript.organizeImports",
+                    arguments = { vim.api.nvim_buf_get_name(0) },
+                  })
+                end,
+                description = "Organize Imports",
+              },
+            },
+          })
+        end,
       },
     })
   end,
